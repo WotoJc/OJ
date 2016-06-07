@@ -1,0 +1,44 @@
+<!--
+Implement strStr().
+
+Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Implement strStr()</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        /**
+        * @param {string} haystack
+        * @param {string} needle
+        * @return {number}
+        */
+        var strStr = function(haystack, needle) {
+            // 用了暴力方法
+            // － － KMP 比较复杂
+            var hlen = haystack.length;
+            var nlen = needle.length;
+            if(hlen < nlen ) return -1;
+            if(nlen == 0) return 0;
+            for(var i = 0 ; i < hlen-nlen+1 ; i++){
+                var res = i;
+                for(var j = 0; j < nlen; j++){
+                    if(haystack[i+j] != needle[j])
+                        break;
+                    if(j == nlen -1) return res;
+                }
+            }
+            return -1;
+            // return haystack.indexOf(needle);
+        };
+        var str = "mississippi";
+        var needle = "issip";
+        document.write(strStr(str,needle));
+        </script>
+    </body>
+</html>

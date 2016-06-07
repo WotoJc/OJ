@@ -1,0 +1,53 @@
+<!--
+Given an array and a value, remove all instances of that value in place and return the new length.
+
+Do not allocate extra space for another array, you must do this in place with constant memory.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+Example:
+Given input array nums = [3,2,2,3], val = 3
+
+Your function should return length = 2, with the first two elements of nums being 2.
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Remove Element</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        /**
+        * @param {number[]} nums
+        * @param {number} val
+        * @return {number}
+        */
+
+        var removeElement = function(nums, val) {
+            nums = nums.sort();
+            for(var count = 0 ; count < nums.length ;count++)
+            {
+                if(nums[count]==val){
+                    nums.splice(count,1);
+                    count--;
+
+                }
+            }
+            return nums.length;
+        };
+
+        var arr = [3,2,2,3,3,4,3,2,3,1];
+        var val = 3;
+
+        document.write(removeElement(arr,val)+"<hr/>");
+        for(var node of arr)
+            document.write("->"+node);
+
+
+
+
+        </script>
+
+    </body>
+</html>

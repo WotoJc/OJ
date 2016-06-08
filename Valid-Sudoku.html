@@ -1,0 +1,83 @@
+<!--
+Determine if a Sudoku is valid.
+
+The Sudoku board could be partially filled, where empty cells are filled with the character '.'.
+
+A partially filled sudoku which is valid.
+
+Note:
+A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Valid Sudoku</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        /**
+         * @param {character[][]} board
+         * @return {boolean}
+         */
+        var isValidSudoku = function(board) {
+            for (var i = 0; i < 9; i++)
+            {
+                // check row
+                for (var j = 0; j < 9; j++){
+                    if(board[i][j] != '.')
+                        for (var k = j + 1; k < 9; k++)
+                        {
+                            if(board[i][k] == '.') continue
+                            if (board[i][k] == board[i][j]) return false;
+                        }
+
+                }
+                //check col
+                for(var m = 0 ; m < 9 ; m++){
+                    if(board[m][i] != '.')
+                        for(var n = m+1 ; n < 9 ; n++){
+                            if(board[n][i] == '.') continue;
+                            if(board[m][i] == board[n][i]) return false;
+                        }
+                }
+            }
+
+
+            var arr = "";
+            // check 3*3 cell;
+            for(var i = 0 ; i < 9 ; i+=3){
+                for(var j = 0 ; j < 9 ; j+=3)
+                {
+                    for(var m = 0 ; m < 3; m++)
+                    {
+                        for(var n = 0 ; n < 3 ;n++)
+                        {
+                            if(board[i+m][j+n] != '.'){
+                                if(arr.indexOf(board[i+m][j+n]) != -1) return false;
+                                arr += board[i+m][j+n];
+                            }
+                        }
+
+                    }
+                    // clear
+                    arr = "";
+                }
+            }
+
+
+
+            return true;
+        };
+
+
+
+
+
+        var arr = [".87654321","2........","3........","4........","5........","6........","7........","8........","9........"];
+        document.write(isValidSudoku(arr));
+
+
+        </script>
+    </body>
+</html>

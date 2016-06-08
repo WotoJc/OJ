@@ -1,0 +1,58 @@
+<!--
+The count-and-say sequence is the sequence of integers beginning as follows:
+1, 11, 21, 1211, 111221, ...
+
+1 is read off as "one 1" or 11.
+11 is read off as "two 1s" or 21.
+21 is read off as "one 2, then one 1" or 1211.
+Given an integer n, generate the nth sequence.
+
+Note: The sequence of integers will be represented as a string.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Count and Say</title>
+    </head>
+    <body>
+            <script type="text/javascript">
+
+            function CAS(arr){
+                var count = 1 ;
+                var res = "";
+                var c = arr[0];
+                for (var i = 1 ; i < arr.length ; i++) {
+                    if(arr[i] == c)
+                        count ++;
+                    else {
+                        res += count+c;
+                        c = arr[i];
+                        count = 1 ;
+                    }
+                }
+                res += count+c;
+
+                return res;
+            }
+            /**
+            * @param {number} n
+            * @return {string}
+            */
+            var countAndSay = function(n) {
+                if(n==1) return "1";
+                var res = "1";
+                for(var i = 0 ; i < n-1 ; i++)
+                    res = CAS(res);
+                return res;
+
+            };
+
+
+
+
+
+            document.write("<hr/>"+countAndSay(4));
+            </script>
+    </body>
+</html>

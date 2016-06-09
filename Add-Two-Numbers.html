@@ -1,0 +1,102 @@
+<!--
+You are given two linked lists representing two non-negative numbers.
+The digits are stored in reverse order and each of their nodes contain a single digit.
+ Add the two numbers and return it as a linked list.
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+-->
+
+<script type="text/javascript">
+    /**
+     * Definition for singly-linked list.
+     */
+    function ListNode(val) {
+        this.val = val;
+        this.next = null;
+    }
+    var list1;
+    var list2;
+
+    function init() {
+
+        list1 = new ListNode(5);
+        list1.next = new ListNode(8);
+        // list1.next.next = new ListNode(1);
+
+        list2 = new ListNode(0);
+        // list2.next = new ListNode(9);
+        // list2.next.next = new ListNode(9);
+        // list2.next.next.next = new ListNode(0);
+
+    }
+
+    /**
+     * @param {ListNode} l1
+     * @param {ListNode} l2
+     * @return {ListNode}
+     */
+    var addTwoNumbers = function(l1, l2) {
+        // 判断
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+
+        // 先处理个位数
+        var num = l1.val + l2.val;
+        // 进位标志
+        var full = false;
+        if (num > 9) {
+            num %= 10;
+            full = true;
+        }
+        var res = new ListNode(num);
+        var head = res;
+        l1 = l1.next;
+        l2 = l2.next;
+
+        while (l1 != null && l2 != null) {
+            num = l1.val + l2.val + full;
+            if (num > 9) {
+                num %= 10;
+                full = true;
+            } else full = false;
+            res.next = new ListNode(num);
+            res = res.next;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+
+        //这种方法效率低，不过可以处理 999999999999+1 这种问题
+        while ( l1 != null ){
+            num = l1.val + full;
+            if( num > 9){
+                num %= 10;
+                full = true;
+            } else full = false;
+            res.next = new ListNode(num);
+            res = res.next;
+            l1 = l1.next;
+        }
+        while ( l2 != null ){
+            num = l2.val + full;
+            if( num > 9){
+                num %= 10;
+                full = true;
+            } else full = false;
+            res.next = new ListNode(num);
+            res = res.next;
+            l2 = l2.next;
+        }
+        
+        if(full) res.next = new ListNode(1);
+
+        return head;
+    };
+
+    init();
+    var result = addTwoNumbers(list1, list2);
+    while (result != null) {
+        document.write(result.val);
+        result = result.next;
+    }
+</script>

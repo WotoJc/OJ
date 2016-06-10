@@ -1,0 +1,33 @@
+<!--
+Given a non-negative number represented as an array of digits, plus one to the number.
+
+The digits are stored such that the most significant digit is at the head of the list.
+-->
+
+<script type="text/javascript">
+    /**
+     * @param {number[]} digits
+     * @return {number[]}
+     */
+    var plusOne = function(digits) {
+        var add = 0;
+        var full = true ;
+        var len = digits.length;
+        var i = len - 1;
+        while(full && i > -1){
+            if( digits[i] + true > 9){
+                full = true;
+                digits[i] = 0;
+            } else {
+                digits[i]++;
+                full = false;
+            }
+            i--;
+        }
+        // return digits;
+         return full ? [1].concat(digits) : digits;
+    };
+
+    var num = [0];
+    document.write(plusOne(num));
+</script>

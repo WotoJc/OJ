@@ -1,0 +1,35 @@
+<script type="text/javascript">
+    /**
+     * Definition for a binary tree node.
+     */
+    function TreeNode(val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+
+
+    /**
+     * @param {TreeNode} p
+     * @param {TreeNode} q
+     * @return {boolean}
+     */
+    var isSameTree = function(p,q) {
+        // 判断 结构
+        if((p == null)^(q == null)) return false;
+        // 同时null 为真
+        if(p == null && q == null) return true;
+        // 节点值不同
+        if(p.val != q.val) return false;
+        // 判断左右子节点 ,迭代查询
+        return isSameTree(p.left,q.left) ? isSameTree(p.right,q.right):false;
+    };
+
+    var tq = new TreeNode(2);
+    var tp = new TreeNode(2);
+    tq.left = new TreeNode(1);
+    tp.left = new TreeNode(1);
+    document.write(isSameTree(tp,tq));
+    //document.write(tq.left.val);
+    document.write("<hr/>");
+    document.write(true ^ false);
+</script>

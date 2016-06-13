@@ -1,0 +1,63 @@
+<!--
+Given a binary tree, return the level order traversal of its nodes' values.
+(ie, from left to right, level by level).
+-->
+<script type="text/javascript">
+    /**
+     * Definition for a binary tree node.
+     */
+
+     function TreeNode(val) {
+          this.val = val;
+          this.left = this.right = null;
+     }
+    /**
+     * @param {TreeNode} root
+     * @return {number[][]}
+     */
+    var levelOrder = function(root) {
+        var res = new Array();
+        var count = 0 ;
+        if(root == null) return null;
+        add(root,count,res);
+        return res;
+    };
+
+    // DFS
+    function add(root,count,arr){
+        // 判断节点是否唯空
+        if(root == null) return;
+        // 节点不为空则记录节点值，［判断是否开辟新数组］
+        if(arr[count] == null) arr.unshift(new Array());
+        // 根据当前count来判断在哪个深度插入
+        arr[arr.length - count - 1].push(root.val);
+        // 递归，param:左右子节点，数组层数＋1，数组对象
+        if(root.left != null) add(root.left,count+1,arr);
+        if(root.right != null) add(root.right,count+1,arr);
+    }
+
+    var q = new TreeNode(2);
+
+    q.left = new TreeNode(1);
+    q.right = new TreeNode(1);
+
+    q.left.right = new TreeNode(4);
+    q.left.left = new TreeNode(3);
+    q.right.right = new TreeNode(3);
+    q.right.left = new TreeNode(4);
+
+    function show(arr){
+        for(var i = 0; i< arr.length;i++)
+        {
+            document.write("<br/>");
+            for(var j = 0 ; j < arr[i].length ; j++){
+                document.write(arr[i][j]+"  ");
+            }
+        }
+    }
+
+    show(levelOrder(q));
+
+
+
+</script>

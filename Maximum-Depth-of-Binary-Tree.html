@@ -1,0 +1,49 @@
+<!--
+Given a binary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+-->
+<script type="text/javascript">
+    /**
+     * Definition for a binary tree node.
+     */
+
+    function TreeNode(val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+    /**
+     * @param {TreeNode} root
+     * @return {number}
+     */
+    var maxDepth = function(root) {
+        if(root == null) return 0;
+        // 默认头节点深度为1
+        return findMax(root,1);
+    };
+
+    function findMax(root,max){
+        var l,r;
+        if(root.left != null)
+            l = findMax(root.left,max+1);
+        else
+            l = max;
+        if(root.right != null)
+            r = findMax(root.right,max+1);
+        else
+            r = max;
+        return Math.max(l,r);
+    }
+
+    var q = new TreeNode(1);
+    q.left = new TreeNode(2);
+    q.right = new TreeNode(2);
+    q.left.right = new TreeNode(3);
+    q.left.right.left = new TreeNode(4);
+    q.left.left = new TreeNode(3);
+    q.right.right = new TreeNode(3);
+    q.right.left = new TreeNode(3);
+
+    document.write(maxDepth(q));
+
+</script>

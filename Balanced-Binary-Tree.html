@@ -1,0 +1,50 @@
+<!--
+Q:
+    Given a binary tree, determine if it is height-balanced.
+
+Define:
+     a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1
+ -->
+
+<script type="text/javascript">
+    /**
+     * Definition for a binary tree node.
+     */
+
+    function TreeNode(val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+    /**
+     * @param {TreeNode} root
+     * @return {boolean}
+     */
+    var isBalanced = function(root) {
+        // OJ 默认空的二叉树为真
+        if(root == null) return true;
+        //如果返回的是-1，则不是二叉平衡树
+        return depth(root) == -1 ? false : true;
+    };
+
+    // 递归方法，从叶子节点开始查（ DFS ）
+    function depth(root){
+        // 判断左右节点，null 则深度为0，否则递归
+        var l = root.left == null ? 0 : depth(root.left);
+        var r = root.right == null ? 0 : depth(root.right);
+        // 如果 返回的是－1 则继续返回－1
+        if(l == -1 || r == - 1) return -1;
+        // 如果相差大于1，则返回－1，否则返回左右节点中深度最大的一位
+        if(Math.abs(++l-++r) > 1) return -1;
+        return Math.max(l,r);
+    }
+
+
+    var root = new TreeNode(1);
+     root.left = new TreeNode(2);
+     root.right = new TreeNode(3);
+     root.right.left = new TreeNode(4);
+     root.right.left.left = new TreeNode(4);
+
+
+    document.write(isBalanced(root));
+</script>

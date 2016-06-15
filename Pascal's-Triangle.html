@@ -1,0 +1,42 @@
+<!--
+Q : Given numRows, generate the first numRows of Pascal's triangle.
+ -->
+
+<script type="text/javascript">
+    /**
+     * @param {number} numRows
+     * @return {number[][]}
+     */
+    var generate = function(numRows) {
+
+        var res = new Array();
+        // 特殊情况
+        if(numRows == 0) return res;
+        if(numRows == 1) return [[1]];
+        // >2 row 的情况，先添加第一行
+        res.push([1]);
+        // 从第2行开始
+        for (var i = 1 ; i < numRows ; i++) {
+            var add = new Array();
+            add.push(1);
+            for(var j = 1 ; j < i ; j++){
+                add.push(res[i-1][j-1]+res[i-1][j]);
+            }
+            add.push(1);
+            res.push(add);
+        }
+        return res;
+    };
+
+    function show(number){
+        for(var i = 0; i < number.length ; i++)
+        {
+            for (var j = 0; j < number[i].length; j++) {
+                document.write("("+number[i][j]+")");
+            }
+            document.write("<br/>");
+        }
+    }
+
+    show(generate(3));
+</script>

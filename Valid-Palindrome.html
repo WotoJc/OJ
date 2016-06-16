@@ -1,0 +1,30 @@
+<script type="text/javascript">
+    /**
+     * @param {string} s
+     * @return {boolean}
+     */
+    var isPalindrome = function(s) {
+        var res  = true;
+        var len = s.length;
+        var str = "";
+        for (var i = 0; i < len; i++) {
+            if(s[i] >= 'A' && s[i] <= 'Z' || s[i] >= '0' && s[i] <= '9' || s[i] >= 'a' && s[i] <= 'z')
+                str+=s[i];
+        }
+        str = str.toLowerCase();
+         document.write("("+str+")<br/>");
+        for(var i = 0,j= str.length-1 ; i < str.length/2;i++,j--){
+             document.write(str[i]+"-"+str[j]+"<br/>");
+            if(str[i]!=str[j]) return false;
+        }
+        return res;
+    };
+
+    document.write(isPalindrome("1A man, a plan, a canal: Panama1"));
+    document.write("<br/>");
+    document.write(isPalindrome("`l;`` 1o1 ??;l`"));
+    document.write("<hr/>");
+    document.write('`'.charCodeAt());
+
+
+</script>

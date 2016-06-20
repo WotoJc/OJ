@@ -1,0 +1,51 @@
+
+<!--
+Write a program to find the node at which the intersection of two singly linked lists begins.
+ -->
+<script type="text/javascript">
+/**
+* Definition for singly-linked list.
+* function ListNode(val) {
+*     this.val = val;
+*     this.next = null;
+* }
+*/
+
+/**
+* @param {ListNode} headA
+* @param {ListNode} headB
+* @return {ListNode}
+*/
+var getIntersectionNode = function(headA, headB) {
+if(headA == null || headB == null)  return null
+var h1 = headA;
+var h2 = headB;
+// var res = null ;
+var len1 = 0;
+var len2 = 0;
+while(h1 != null)
+{
+    len1++;
+    h1=h1.next;
+}
+while(h2 != null){
+    len2++;
+    h2=h2.next;
+}
+h1 = headA;
+h2 = headB;
+if( len1 > len2){
+    for(var i = 0 ;i < len1 - len2 ;i++)
+        h1 = h1.next;
+} else if( len2 > len1){
+    for(var i = 0 ; i < len2 - len1 ; i++)
+        h2 = h2.next;
+}
+while(h1 != h2 && h1 != null && h2 != null)
+{
+    h1 = h1.next;
+    h2 = h2.next;
+}
+return h1;
+};
+</script>

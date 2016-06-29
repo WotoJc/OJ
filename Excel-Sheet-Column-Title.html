@@ -1,0 +1,34 @@
+<!--
+Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+ -->
+
+<script type="text/javascript">
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var convertToTitle = function(n) {
+    if(n < 1) return "";
+    var num26 = [];
+    while(n){
+        num26.push((n-1)%26);
+        n = Math.floor((n-1)/26);
+        document.write('('+n+')');
+
+    }
+    var res = "";
+    for (var i = num26.length-1 ; i >= 0; i--) {
+        res+=String.fromCharCode(65+num26[i]);
+    }
+    return res;
+};
+document.write(convertToTitle(1)+'<br/>');
+document.write(convertToTitle(26)+'<br/>');
+document.write(convertToTitle(27)+'<br/>');
+document.write(convertToTitle(52)+'<br/>');
+document.write(convertToTitle(53)+'<br/>');
+
+
+// var a = 'A'+1;
+// document.write("<br/>"+a);
+</script>

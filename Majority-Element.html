@@ -1,0 +1,36 @@
+<!--
+Given an array of size n, find the majority element.
+ The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+
+You may assume that the array is non-empty and the majority element always exist in the array.
+ -->
+
+<script type="text/javascript">
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    var majorityElement = function(nums) {
+        var map = new WeakMap();
+        var len = nums.length;
+        for(var i = 0 ; i < len ; i++){
+            if(map.has(nums[i])){
+                var count = map.get(nums[i]);
+                map.set(nums[i],++count);
+            } else {
+                map.set(nums[i],1);
+            }
+        }
+        var size = len / 2 ;
+        var res ;
+        map.forEach(function(val,key){
+            if(val >= size){
+                res = key;
+            }
+        });
+        return res;
+    };
+
+    var a = [1,1,1,2];
+    document.write('<hr/>'+majorityElement1(a));
+</script>

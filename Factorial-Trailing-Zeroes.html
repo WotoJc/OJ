@@ -1,0 +1,34 @@
+<!--
+Given an integer n, return the number of trailing zeroes in n!.
+-->
+<script type="text/javascript">
+/**
+* @param {number} n
+* @return {number}
+*/
+var trailingZeroes = function(n) {
+    if(n == 0) return 0;
+    var res = 0 ;
+    while(n >= 5){
+        res += Math.floor(n/5);
+        n /= 5;
+    }
+    return res;
+    // if(n == 0) return 0;
+    // var time5 = 0;
+    // for (var i = 1 ; i <= n ; i++) {
+    //     var num = i;
+    //     while(num%5 == 0 ){
+    //         time5++;
+    //         num /= 5;
+    //     }
+    // }
+    // return time5;
+};
+
+document.write(trailingZeroes(25)+'<br/>');
+document.write(trailingZeroes(125)+'<br/>');
+document.write(trailingZeroes(625)+'<br/>');
+
+
+</script>

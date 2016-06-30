@@ -1,0 +1,23 @@
+<!--
+Given a column title as appear in an Excel sheet, return its corresponding column number.
+ -->
+<script type="text/javascript">
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var titleToNumber = function(s) {
+    var res =0;
+    var len = s.length;
+    for (var i = 0; i < len; i++) {
+        res += Math.pow(26,len-i-1)*(s.charCodeAt(i)-64);
+    }
+    return res;
+};
+
+document.write(titleToNumber("A")+'<br/>');
+document.write(titleToNumber("Z")+'<br/>');
+document.write(titleToNumber("AA")+'<br/>');
+document.write(titleToNumber("AZ")+'<br/>');
+
+</script>

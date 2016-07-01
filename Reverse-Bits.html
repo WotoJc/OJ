@@ -1,0 +1,50 @@
+<!--
+Reverse bits of a given 32 bits unsigned integer.
+
+For example, given input 43261596 (represented in binary as 00000010100101000001111010011100), return 964176192 (represented in binary as 00111001011110000010100101000000).
+
+Follow up:
+If this function is called many times, how would you optimize it?
+-->
+
+<script type="text/javascript">
+/**
+ * @param {number} n - a positive integer
+ * @return {number} - a positive integer
+ */
+var reverseBits = function(n) {
+    //转为2进制
+    var str = n.toString(2);
+    //长度
+    var len = str.length;
+    //由于是无符号，要记录补位的个数，在reversr二进制字符串后补上0
+    var less = 32 - len ;
+    var res = "";
+    for(;len>=0;len--) res+=str.charAt(len);
+    for(;less>0;less--) res+="0";
+    // 二进制转十进制
+    return parseInt(res,2);
+};
+
+document.write(reverseBits(43261596));
+</script>
+
+
+<!--
+
+version 1 : beat 22%
+
+
+var reverseBits = function(n) {
+    var res = ("00000000000000000000000000000000"+ n.toString(2)).slice(-32);
+    String.prototype.reverse = function(){
+        var str = "";
+        var len = this.length;
+        for(;len >= 0;len--)
+            str+=this.charAt(len);
+        return str;
+    }
+    return parseInt(res.reverse(),2);
+};
+
+-->

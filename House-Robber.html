@@ -1,0 +1,24 @@
+<!--
+You are a professional robber planning to rob houses along a street.
+Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the
+-->
+
+<script type="text/javascript">
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function(nums) {
+    var sum1 = 0 ;
+    var sum2 = 0;
+    for (var i = 0; i < nums.length; i++) {
+        var temp = sum2 ;
+        sum2 = Math.max(sum1+nums[i],sum2);
+        sum1 = temp;
+    }
+    return sum2;
+};
+var nums = [1,4,7,6,5,1];
+document.write(rob(nums));
+</script>

@@ -1,0 +1,41 @@
+
+<!--
+Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+ -->
+<script type="text/javascript">
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+    var len = nums.length ;
+    if(len < 2) return false;
+    nums.sort();
+    for(var i = 1 ; i < len ;i++){
+        if(nums[i] == nums[i-1]) return true;
+    }
+    return false;
+};
+var num = [1,2,3,4,5];
+document.write(containsDuplicate(num));
+</script>
+
+
+
+<!--
+NOTE: bad ans
+
+var containsDuplicate = function(nums) {
+    var len = nums.length ;
+    if(len < 2) return false;
+    var table = [];
+    for( var i = 0 ; i < len ; i++ ){
+        if(table.indexOf(nums[i]) == -1)
+            table.push(nums[i]);
+        else return true;
+    }
+    return false;
+};
+
+ -->

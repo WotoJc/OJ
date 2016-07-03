@@ -1,0 +1,94 @@
+<!--
+Given two strings s and t, determine if they are isomorphic.
+给出两个字符串 s 和 t ，确定它们是否是同构的。
+Two strings are isomorphic if the characters in s can be replaced to get t.
+如果s里面的字母能被代替得到t，那么它们的同构的。
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+全部字母必须被另一个字母代替，而且保持字母的顺序。
+For example,
+Given "egg", "add", return true.
+
+Given "foo", "bar", return false.
+
+Given "paper", "title", return true.
+-->
+
+
+<script type="text/javascript">
+    /**
+     * @param {string} s
+     * @param {string} t
+     * @return {boolean}
+     */
+    var isIsomorphic = function(s, t) {
+        if(s == "" && t == "") return true;
+        var characterIndexS = [];
+        var characterIndexT = [];
+        var orderS = [];
+        var orderT = [];
+        var orderLenS = 0;
+        var orderLenT = 0;
+        // 这里假设s t长度是一样的
+        for(var i = 0 ; i < s.length ; i ++){
+            var indexS = characterIndexS.indexOf(s[i]);
+            var indexT = characterIndexT.indexOf(t[i]);
+
+            if( indexS != -1){
+                orderS[i] = indexS;
+            } else {
+                characterIndexS.push(s[i]);
+                orderS[i] = ++orderLenS - 1;
+            }
+            if( indexT != -1){
+                orderT[i] = indexT;
+            } else {
+                characterIndexT.push(t[i]);
+                orderT[i] =  ++orderLenT - 1;
+            }
+            if(orderT[i] != orderS[i]) return false;
+        }
+
+        return true;
+    };
+
+
+    document.write(isIsomorphic("boofo", "footo"));
+
+</script>
+
+
+
+<!-- NOTE: version1
+
+var isIsomorphic = function(s, t) {
+if(s == "" && t == "") return true;
+var characterIndexS = [];
+var characterIndexT = [];
+var orderS = [];
+var orderT = [];
+var orderLenS = 0;
+var orderLenT = 0;
+// 这里假设s t长度是一样的
+for(var i = 0 ; i < s.length ; i ++){
+    var indexS = characterIndexS.indexOf(s[i]);
+    var indexT = characterIndexT.indexOf(t[i]);
+
+    if( indexS != -1){
+        orderS[i] = indexS;
+    } else {
+        characterIndexS.push(s[i]);
+        orderS[i] = ++orderLenS - 1;
+    }
+    if( indexT != -1){
+        orderT[i] = indexT;
+    } else {
+        characterIndexT.push(t[i]);
+        orderT[i] =  ++orderLenT - 1;
+    }
+    if(orderT[i] != orderS[i]) return false;
+}
+
+return true;
+};
+
+ -->

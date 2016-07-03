@@ -1,0 +1,50 @@
+<script type="text/javascript">
+    /**
+     * Definition for singly-linked list.
+     */
+    function ListNode(val) {
+        this.val = val;
+        this.next = null;
+    }
+
+    /**
+     * @param {ListNode} head
+     * @return {ListNode}
+     */
+    var reverseList = function(head) {
+        if(head == null || head.next == null) return head;
+        var h = head.next ;
+        var pre = head
+        pre.next = null;
+        while(1){
+            if(h.next == null){
+                h.next = pre;
+                return h;
+            }
+            var curhead = h ;
+            h = h.next ;
+            curhead.next = pre;
+            pre = curhead;
+        }
+        return h;
+    };
+
+    function show(list) {
+        var h = list;
+        while (h != null) {
+            document.write(h.val + "<br/>");
+            h = h.next;
+        }
+    }
+
+    var num = new ListNode(1);
+    num.next = new ListNode(2);
+    num.next.next = new ListNode(3);
+    num.next.next.next = new ListNode(4);
+    num.next.next.next.next = new ListNode(5);
+    num.next.next.next.next.next = new ListNode(6);
+    num.next.next.next.next.next.next = new ListNode(7);
+
+
+    show(reverseList(num));
+</script>

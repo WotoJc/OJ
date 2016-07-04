@@ -1,0 +1,43 @@
+<!--
+Invert a binary tree
+-->
+<script type="text/javascript">
+/**
+ * Definition for a binary tree node.
+ */
+ function TreeNode(val) {
+      this.val = val;
+      this.left = this.right = null;
+  }
+
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function(root) {
+    if(root == null) return null;
+    invert(root);
+    return root;
+};
+
+function invert(root){
+    var temp = root.left ;
+    root.left = root.right;
+    root.right = temp;
+    if(root.left != null) invert(root.left);
+    if(root.right != null) invert(root.right);
+}
+
+
+var q = new TreeNode(2);
+q.left = new TreeNode(1);
+q.right = new TreeNode(2);
+q.left.right = new TreeNode(4);
+q.left.left = new TreeNode(3);
+q.right.right = new TreeNode(3);
+q.right.left = new TreeNode(4);
+
+var res = invertTree(q).left;
+document.write(res.val);
+
+</script>

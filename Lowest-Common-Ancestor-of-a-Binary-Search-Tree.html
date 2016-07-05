@@ -1,0 +1,28 @@
+<script type="text/javascript">
+
+    /**
+     * Definition for a binary tree node.
+     */
+
+    function TreeNode(val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+    /**
+     * @param {TreeNode} root
+     * @param {TreeNode} p
+     * @param {TreeNode} q
+     * @return {TreeNode}
+     */
+    var lowestCommonAncestor = function(root, p, q) {
+        // 假设是二叉树，而且p,q都在二叉树里面，节点的值都不相同
+        if(root == null || p == null || q == null) return null;
+        if(Math.max(p.val,q.val) < root.val)
+            return lowestCommonAncestor(root.left , p, q);
+        else if(Math.min(p.val,q.val) > root.val)
+            return lowestCommonAncestor(root.right , p, q);
+        else return root;
+    };
+
+    // NOTE: http://blog.csdn.net/beiyetengqing/article/details/7633651
+</script>

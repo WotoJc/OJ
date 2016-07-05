@@ -1,0 +1,25 @@
+<!--
+Given an integer, write a function to determine if it is a power of two.
+-->
+<script type="text/javascript">
+/**
+* @param {number} n
+* @return {boolean}
+*/
+var isPowerOfTwo = function(n) {
+    // 2 ^ n 的二进制格式是 100000000....
+    var str = n.toString(2);
+    var len = str.length;
+    for(var i = 1 ; i < len ;i ++)
+        if(str[i] == '1') return false;
+    return true;
+};
+
+function show(){
+    for(var i = 1 ; i <100 ; i ++)
+        document.write(i+'   '+isPowerOfTwo(i)+'<br>');
+}
+
+show()
+
+</script>

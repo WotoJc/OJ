@@ -1,0 +1,19 @@
+<!--
+Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+-->
+<script type="text/javascript">
+    /**
+     * @param {number} a
+     * @param {number} b
+     * @return {number}
+     */
+    var getSum = function(a, b) {
+        while (b != 0) {
+            var c = a ^ b;
+            b = (a & b) << 1;
+            a = c;
+        }
+        return a;
+    };
+    // NOTE:  这里解释
+</script>

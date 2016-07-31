@@ -1,0 +1,51 @@
+<script type="text/javascript">
+    /**
+     * Definition for singly-linked list.
+     */
+    function ListNode(val) {
+        this.val = val;
+        this.next = null;
+    }
+
+    /**
+     * @param {ListNode} head
+     * @return {boolean}
+     */
+    /*
+    //version 1 : beat 30%
+    var isPalindrome = function(head) {
+            //case
+            if(head == null || head.next == null ) return true;
+            var p = head;
+            var arr = [];
+            while(p!=null)
+            {
+                arr.push(p.val);
+                p = p.next;
+            }
+            arr.reverse();
+            p = head;
+            for(var i = 0;i<arr.length;i++)
+            {
+                if(p.val != arr[i]) return false;
+                p = p.next;
+            }
+            return true;
+        };
+    */
+
+    var isPalindrome = function(head) {
+
+    };
+
+
+    var num = new ListNode(1);
+    num.next = new ListNode(2);
+    num.next.next = new ListNode(3);
+    num.next.next.next = new ListNode(4);
+    num.next.next.next.next = new ListNode(5);
+    num.next.next.next.next.next = new ListNode(6);
+
+
+    document.write(isPalindrome(num));
+</script>

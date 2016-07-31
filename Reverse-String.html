@@ -1,0 +1,21 @@
+<!--
+Write a function that takes a string as input and returns the string reversed.
+-->
+
+<script type="text/javascript">
+    /**
+     * @param {string} s
+     * @return {string}
+     */
+    var reverseString = function(s) {
+        var len = s.length;
+        var res = "";
+        if (len == 0 || len == 1) return s;
+        for (var i = len - 1; i >= 0; i--) {
+            res += s[i];
+        }
+        return res;
+  s  };
+
+    document.write(reverseString("abcde"));
+</script>

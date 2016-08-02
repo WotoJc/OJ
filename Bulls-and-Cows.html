@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    /**
+     * @param {string} secret
+     * @param {string} guess
+     * @return {string}
+     */
+    var getHint = function(secret, guess) {
+        var a = 0;
+        var b = 0;
+        var len = secret.length;
+        for (var i = 0; i < len; i++)
+            if (secret[i] == guess[i])
+                a++;
+        var s = secret.sort();
+        var g = guess.sort();
+        var spos = 0;
+        var gpos = 0;
+        while(spos < len && gpos < len){
+            if(s[spos] == g[gpos]) b++,gpos++,spos++;
+            else if(s[spos] > g[gpos]) gpos++;
+            else spos++;
+        }
+        return a + "A" + (b - a) + "B";
+    };
+
+    String.prototype.sort = function() {
+        var arr = this.split("");
+        arr.sort();
+        var res = "";
+        for (var i = 0; i < arr.length; i++)
+            res += arr[i];
+        return res;
+    }
+
+
+
+
+
+
+    document.write(getHint("12", "23"));
+</script>

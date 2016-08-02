@@ -1,0 +1,15 @@
+<script type="text/javascript">
+    /**
+     * @param {number} n
+     * @return {boolean}
+     */
+    var isPowerOfThree = function(n) {
+        if(n < 1 ) return false;
+        if(n == 1) return true;
+        var m = Math.log(n) / Math.log(3);
+        // 处理精度问题
+        m = Math.round(m*100000000000000)/100000000000000;
+        return m = Math.round(m);
+    };
+    document.write(isPowerOfThree(10));
+</script>
